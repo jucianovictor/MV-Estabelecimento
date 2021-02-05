@@ -1,1 +1,45 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #e1e1e1;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-color);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: var(--primary-color);
+}
+
+::-webkit-scrollbar-track {
+  background: #333333;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+
+::-webkit-scrollbar-track:active {
+  background: #333333;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
