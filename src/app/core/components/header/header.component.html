@@ -1,0 +1,5 @@
+<header>
+  <p-menubar [model]="menuItems">
+    <p-autoComplete [(ngModel)]="selectedValue" [suggestions]="filteredPages" (completeMethod)="search($event)" placeholder="Módulo"></p-autoComplete>
+  </p-menubar>
+</header>
