@@ -66,8 +66,16 @@ export class ProfissionalCrudComponent implements OnInit {
   loadProfissionais(page = 1, size = 10) {
     this.profissionalService.findAllPageable(page, size)
       .subscribe((profissionaisPageResponse: ServiceResponse<Page<Profissional>>) => {
-        this.profissionais = profissionaisPageResponse.data.content
-        this.totalRecords = profissionaisPageResponse.data.totalElements
+        if (profissionaisPageResponse.feedback.type === 'error') {
+          this.messageService.add({
+            severity: profissionaisPageResponse.feedback.type,
+            summary: profissionaisPageResponse.feedback.message,
+            detail: profissionaisPageResponse.feedback.detail
+          })
+        } else {
+          this.profissionais = profissionaisPageResponse.data.content
+          this.totalRecords = profissionaisPageResponse.data.totalElements
+        }
         this.loading = false
       })
   }

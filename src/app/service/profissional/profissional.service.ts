@@ -19,6 +19,7 @@ export class ProfissionalService {
   public findAllPageable(page = 1, size?:number) {
     return this.httpClient.get<ServiceResponse<Page<Profissional>>>(`${this.API}?page=${page}${size ? `&size=${size}` : ``}`)
       .pipe(
+        map(response => toSuccessServiceResponse<Page<Profissional>>(response.data, 'Successo', 'Busca realizada com sucesso!')),
         catchError(err => handleError<Page<Profissional>>(err, genericErrors))
       )
   }

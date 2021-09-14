@@ -19,6 +19,7 @@ export class EstabelecimentoService {
   public findAllPageable(page = 1, size?: number) {
     return this.httpClient.get<ServiceResponse<Page<Estabelecimento>>>(`${this.API}?page=${page}${size ? `&size=${size}` : ``}`)
       .pipe(
+        map(response => toSuccessServiceResponse<Page<Estabelecimento>>(response.data, 'Successo', 'Busca realizada com sucesso!')),
         catchError(err => handleError<Page<Estabelecimento>>(err, genericErrors))
       )
   }

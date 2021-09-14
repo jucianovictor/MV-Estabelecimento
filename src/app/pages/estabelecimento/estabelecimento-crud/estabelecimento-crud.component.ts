@@ -58,8 +58,16 @@ export class EstabelecimentoCrudComponent implements OnInit {
   loadEstabelecimentos(page = 1, size = 10) {
     this.estabelecimentoService.findAllPageable(page, size)
       .subscribe((estabelecimentosPageResponse: ServiceResponse<Page<Estabelecimento>>) => {
-        this.estabelecimentos = estabelecimentosPageResponse.data.content
-        this.totalRecords = estabelecimentosPageResponse.data.totalElements
+        if (estabelecimentosPageResponse.feedback.type === 'error') {
+          this.messageService.add({
+            severity: estabelecimentosPageResponse.feedback.type,
+            summary: estabelecimentosPageResponse.feedback.message,
+            detail: estabelecimentosPageResponse.feedback.detail
+          })
+        } else {
+          this.estabelecimentos = estabelecimentosPageResponse.data.content
+          this.totalRecords = estabelecimentosPageResponse.data.totalElements
+        }
         this.loading = false
       })
   }
